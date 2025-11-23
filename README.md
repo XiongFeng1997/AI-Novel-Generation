@@ -43,17 +43,17 @@ vim .env
 # 一键启动部署
 docker compose -f docker-compose-with-auth.yaml up -d
 
+```
 
-##  本地访问
+#  本地访问
 
 - **使用地址：http://localhos**
 - **默认用户名：admin**
 - **默认密码：123**
 
+#  导入 AI-Novel-Gemeration 工作流
 
-##  导入 AI-Novel-Gemeration 工作流
-
-- **工作流文件地址：**docker/astronAgent/小说图文生成.yml
+- **工作流文件地址：ocker/astronAgent/小说图文生成.yml**d
 - **新建工作流时导入该文件即可**
 
 
