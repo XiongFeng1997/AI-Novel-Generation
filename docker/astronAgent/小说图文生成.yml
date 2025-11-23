@@ -1,0 +1,1056 @@
+flowMeta:
+  name: 小说图文生成器
+  description: 输入小说名称，生成图文小说
+  avatarIcon: https://oss-beijing-m8.openstorage.cn/SparkBotProd/icon/common/emojiitem_00_10@2x.png
+  avatarColor: '#FFEAD5'
+  advancedConfig: '{"prologue":{"enabled":false,"inputExample":["","",""]},"textToSpeech":{"enabled":false,"vcn_cn":"x5_lingxiaotang_flow","vcn_en":""},"suggestedQuestionsAfterAnswer":{"enabled":false},"chatBackground":{"enabled":false}}'
+  category: 14
+  dslVersion: v1
+flowData:
+  nodes:
+  - id: node-start::d61b0f71-87ee-475e-93ba-f1607f0ce783
+    dragging: false
+    selected: false
+    width: 361
+    height: 89
+    position:
+      x: -1546.550356823002
+      y: -242.9434734258855
+    positionAbsolute:
+      x: -1546.550356823002
+      y: -242.9434734258855
+    type: custom
+    data:
+      allowInputReference: false
+      allowOutputReference: true
+      label: 开始
+      status: ''
+      nodeMeta:
+        aliasName: 开始节点
+        nodeType: 基础节点
+      inputs: [
+        ]
+      outputs:
+      - id: 0918514b-72a8-4646-8dd9-ff4a8fc26d44
+        name: AGENT_USER_INPUT
+        nameErrMsg: ''
+        schema:
+          type: string
+          default: ''
+        required: true
+        deleteDisabled: true
+      nodeParam:
+        setAnswerContentErrMsg: 输出中变量名校验不通过,自动生成JSON失败
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/start-node-icon.png
+      description: 工作流的开启节点，用于定义流程调用所需的业务变量信息。
+      updatable: false
+  - id: node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    dragging: false
+    selected: true
+    width: 361
+    height: 89
+    position:
+      x: 561.4526422677181
+      y: 0.6099101496758408
+    positionAbsolute:
+      x: 561.4526422677181
+      y: 0.6099101496758408
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: false
+      label: 结束
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        aliasName: 结束节点
+        nodeType: 基础节点
+      inputs:
+      - id: 82de2b42-a059-4c98-bffb-b6b4800fcac9
+        name: output1
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      - id: 4ecb32f4-fd27-4378-b78b-b934be623e6a
+        name: output2
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 46cd5c46-8065-43a0-a062-e19097b0c3a7
+              nodeId: plugin::1d1cc090-cf69-48f1-a2ae-a49f891de795
+              name: data.image_url
+            contentErrMsg: ''
+        fileType: ''
+      - id: 69d25b91-a394-4fbd-ab31-f0d645e69334
+        name: output3
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      - id: 2a00f4d1-8a9d-4024-ad34-6da36b8b9b5f
+        name: output4
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 46cd5c46-8065-43a0-a062-e19097b0c3a7
+              nodeId: plugin::24b2f4e3-0d8a-4e47-b033-12b7c16a3097
+              name: data.image_url
+            contentErrMsg: ''
+        fileType: ''
+      - id: e125c20e-9cc2-4830-bd78-f5f858de90dd
+        name: output5
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      - id: a649d100-e001-4994-876a-fac6d5f34a16
+        name: output6
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 46cd5c46-8065-43a0-a062-e19097b0c3a7
+              nodeId: plugin::9ba02f34-9b90-4d51-9d69-274651ca16b4
+              name: data.image_url
+            contentErrMsg: ''
+        fileType: ''
+      outputs: [
+        ]
+      nodeParam:
+        template: |-
+          {{output1}}
+          <img src="{{output2}}" />
+          {{output3}}
+          <img src="{{output4}}" />
+          {{output5}}
+          <img src="{{output6}}" />
+        streamOutput: false
+        outputMode: 1
+        templateErrMsg: ''
+        reasoningTemplate: |2+
+
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/end-node-icon.png
+      description: 工作流的结束节点，用于输出工作流运行后的最终结果。
+      updatable: false
+  - id: plugin::24b2f4e3-0d8a-4e47-b033-12b7c16a3097
+    dragging: false
+    selected: false
+    width: 361
+    height: 123
+    position:
+      x: -52.97969348128231
+      y: -42.5019891865264
+    positionAbsolute:
+      x: -52.97969348128231
+      y: -42.5019891865264
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 生成配图2
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 工具
+        aliasName: 工具
+      inputs:
+      - id: 936c1db5-cb90-474d-9ce7-bc39498852f3
+        name: width
+        nameErrMsg: ''
+        schema:
+          type: integer
+          value:
+            type: literal
+            content: '1024'
+            contentErrMsg: ''
+        description: 宽度分辨率，支持以下分辨率：512x512, 640x360, 640x480, 640x640, 680x512, 512x680,
+          768x768, 720x1280, 1280x720, 1024x1024
+        required: true
+        disabled: false
+      - id: e18e2fa4-3761-4d2d-9189-a39c2a6a33f7
+        name: height
+        nameErrMsg: ''
+        schema:
+          type: integer
+          value:
+            type: literal
+            content: '1024'
+            contentErrMsg: ''
+        description: 高度分辨率，支持以下分辨率：512x512, 640x360, 640x480, 640x640, 680x512, 512x680,
+          768x768, 720x1280, 1280x720, 1024x1024
+        required: true
+        disabled: false
+      - id: 2dc6e08b-a2b8-4989-9de8-65b8e83f9a64
+        name: prompt
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: dd3d55bb-15ab-43d4-853b-6c10e725972f
+              nodeId: spark-llm::8c04c8e6-4e2a-4e3c-ac71-4b8b05ae1ada
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+        description: 图片描述信息
+        required: true
+        disabled: false
+      outputs:
+      - id: 78868e56-dc08-4e22-b8a1-d17c9494b083
+        name: code
+        schema:
+          type: integer
+      - id: 799c54d2-4db1-4cb6-8924-79a290f41e10
+        name: sid
+        schema:
+          type: string
+      - id: 2e2cea12-5c95-465b-bb75-9d975db1a674
+        name: message
+        schema:
+          type: string
+      - id: 0381466c-b4a9-4fec-b5c3-9a0782d05cba
+        name: data
+        schema:
+          type: object
+          properties:
+          - id: 46cd5c46-8065-43a0-a062-e19097b0c3a7
+            name: image_url
+            type: string
+          - id: 715957cf-ea8f-444d-830f-67f5df1d3572
+            name: image_url_md
+            type: string
+      nodeParam:
+        appId: 680ab54f
+        code: ''
+        pluginId: tool@8b226f7d7421000
+        operationId: 文生图-hrOgFpJ8
+        toolDescription: 根据输入的内容生成与内容有关的图片
+        version: V1.0
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        businessInput: [
+          ]
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/tool-icon.png
+      updatable: false
+      isLatest: true
+  - id: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+    dragging: false
+    selected: false
+    width: 361
+    height: 147
+    position:
+      x: -1090.2254304295577
+      y: -197.79722887543284
+    positionAbsolute:
+      x: -1090.2254304295577
+      y: -197.79722887543284
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 生成章节一内容
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 基础节点
+        aliasName: 大模型
+      inputs:
+      - id: 572edb81-07cf-475c-99dc-b779de054a47
+        name: input
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0918514b-72a8-4646-8dd9-ff4a8fc26d44
+              nodeId: node-start::d61b0f71-87ee-475e-93ba-f1607f0ce783
+              name: AGENT_USER_INPUT
+            contentErrMsg: ''
+        fileType: ''
+      outputs:
+      - id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+        name: output
+        nameErrMsg: ''
+        schema:
+          type: string
+          default: ''
+      nodeParam:
+        maxTokens: 2048
+        topK: 4
+        auditing: default
+        template: 根据我提供的小说名称，生成第一章小说内容，250字，不用回复其他无关的内容，请只回复小说原文内容，并且不要生成血腥、暴力等词汇
+        respFormat: 0
+        appId: 680ab54f
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        enableChatHistoryV2:
+          isEnabled: false
+          rounds: 1
+        templateErrMsg: ''
+        llmId: 593066024
+        domain: deepseek-chat
+        serviceId: deepseek-chat
+        url: https://api.deepseek.com/chat/completions
+        modelId: 1
+        isThink: false
+        multiMode: false
+        modelName: DeepSeeK
+        modelEnabled: true
+        llmIdErrMsg: ''
+        source: openai
+        extraParams:
+          temperature: 1
+        systemTemplate: |2+
+
+        exceptionHandlingEdge: fail_one_of::af887ae2-ce91-4422-8499-6d1fad77a96b
+        handlingEdge: normal_one_of::60633470-e95c-4ec3-b87a-3580bbc29013
+      retryConfig:
+        shouldRetry: false
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/largeModelIcon.png
+      description: 根据输入的提示词，调用选定的大模型，对提示词作出回答
+      updatable: false
+  - id: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+    dragging: false
+    selected: false
+    width: 361
+    height: 147
+    position:
+      x: -969.8704629725709
+      y: 30.218701359551062
+    positionAbsolute:
+      x: -969.8704629725709
+      y: 30.218701359551062
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 生成章节二内容
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 基础节点
+        aliasName: 大模型
+      inputs:
+      - id: dfd50eb3-32eb-47aa-8e7c-2733044eac4d
+        name: input2
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      outputs:
+      - id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+        name: output
+        nameErrMsg: ''
+        schema:
+          type: string
+          default: ''
+      nodeParam:
+        maxTokens: 2048
+        topK: 4
+        auditing: default
+        template: |
+          根据提供给你的小说第一章节的内容，帮我续写这个小说的第二章节剧情，剧情要和章节一无缝衔接，并且小说里的角色名称都要保持完全一致，字数250字
+          注意：只回复小说的章节名和小说正文内容，不要回复任何不相干的文字消息
+        respFormat: 0
+        appId: 680ab54f
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        enableChatHistoryV2:
+          isEnabled: false
+          rounds: 1
+        templateErrMsg: ''
+        llmId: 593066024
+        domain: deepseek-chat
+        serviceId: deepseek-chat
+        url: https://api.deepseek.com/chat/completions
+        modelId: 1
+        isThink: false
+        multiMode: false
+        modelName: DeepSeeK
+        modelEnabled: true
+        llmIdErrMsg: ''
+        source: openai
+        extraParams:
+          temperature: 1
+        systemTemplate: |+
+          根据提供给你的小说第一章节的内容，帮我续写这个小说的第二章节剧情，剧情要和章节一的文末无缝衔接，并且小说里的角色名称都要保持完全一致，字数250字
+          注意：只回复小说的章节名和小说正文内容，不要回复任何不相干的文字消息
+
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/largeModelIcon.png
+      description: 根据输入的提示词，调用选定的大模型，对提示词作出回答
+      updatable: false
+  - id: spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d
+    dragging: false
+    selected: false
+    width: 361
+    height: 147
+    position:
+      x: -894.6205136505009
+      y: 272.0399472825257
+    positionAbsolute:
+      x: -894.6205136505009
+      y: 272.0399472825257
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 生成章节三内容
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 基础节点
+        aliasName: 大模型
+      inputs:
+      - id: 572edb81-07cf-475c-99dc-b779de054a47
+        name: input
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      outputs:
+      - id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+        name: output
+        nameErrMsg: ''
+        schema:
+          type: string
+          default: ''
+      nodeParam:
+        maxTokens: 2048
+        topK: 4
+        auditing: default
+        template: |+
+          根据提供给你的小说第二章节的内容，帮我续写这个小说的第三章节剧情，剧情要和章节二无缝衔接，并且小说里的角色名称都要保持完全一致，字数250字
+          注意：只回复小说的章节名和小说正文内容，不要回复任何不相干的文字消息
+
+        respFormat: 0
+        appId: 680ab54f
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        enableChatHistoryV2:
+          isEnabled: false
+          rounds: 1
+        templateErrMsg: ''
+        llmId: 593066024
+        domain: deepseek-chat
+        serviceId: deepseek-chat
+        url: https://api.deepseek.com/chat/completions
+        modelId: 1
+        isThink: false
+        multiMode: false
+        modelName: DeepSeeK
+        modelEnabled: true
+        llmIdErrMsg: ''
+        source: openai
+        extraParams:
+          temperature: 1
+        systemTemplate: |+
+          根据提供给你的小说第一章节的内容，帮我续写这个小说的第二章节剧情，剧情要和章节二的文末无缝衔接，并且小说里的角色名称都要保持完全一致，字数250字
+          注意：只回复小说的章节名和小说正文内容，不要回复任何不相干的文字消息
+
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/largeModelIcon.png
+      description: 根据输入的提示词，调用选定的大模型，对提示词作出回答
+      updatable: false
+  - id: plugin::1d1cc090-cf69-48f1-a2ae-a49f891de795
+    dragging: false
+    selected: false
+    width: 361
+    height: 123
+    position:
+      x: -177.26107120353106
+      y: -346.377329268391
+    positionAbsolute:
+      x: -177.26107120353106
+      y: -346.377329268391
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 生成配图1
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 工具
+        aliasName: 工具
+      inputs:
+      - id: 936c1db5-cb90-474d-9ce7-bc39498852f3
+        name: width
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: literal
+            content: '1024'
+            contentErrMsg: ''
+        required: true
+      - id: e18e2fa4-3761-4d2d-9189-a39c2a6a33f7
+        name: height
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: literal
+            content: '1024'
+            contentErrMsg: ''
+        required: true
+      - id: 2dc6e08b-a2b8-4989-9de8-65b8e83f9a64
+        name: prompt
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: dd3d55bb-15ab-43d4-853b-6c10e725972f
+              nodeId: spark-llm::1e2ea48c-3e87-4acf-9c1c-982734323633
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+        required: true
+      outputs:
+      - id: 78868e56-dc08-4e22-b8a1-d17c9494b083
+        name: code
+        schema:
+          type: integer
+      - id: 799c54d2-4db1-4cb6-8924-79a290f41e10
+        name: sid
+        schema:
+          type: string
+      - id: 2e2cea12-5c95-465b-bb75-9d975db1a674
+        name: message
+        schema:
+          type: string
+      - id: 0381466c-b4a9-4fec-b5c3-9a0782d05cba
+        name: data
+        schema:
+          type: object
+          properties:
+          - id: 46cd5c46-8065-43a0-a062-e19097b0c3a7
+            name: image_url
+            type: string
+          - id: 715957cf-ea8f-444d-830f-67f5df1d3572
+            name: image_url_md
+            type: string
+      nodeParam:
+        appId: 680ab54f
+        code: ''
+        pluginId: tool@8b226f7d7421000
+        operationId: 文生图-hrOgFpJ8
+        toolDescription: 根据输入的内容生成与内容有关的图片
+        version: V1.0
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        businessInput: [
+          ]
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/tool-icon.png
+      updatable: false
+      isLatest: true
+  - id: plugin::9ba02f34-9b90-4d51-9d69-274651ca16b4
+    dragging: false
+    selected: false
+    width: 361
+    height: 123
+    position:
+      x: 50.424054382595045
+      y: 224.9941325695267
+    positionAbsolute:
+      x: 50.424054382595045
+      y: 224.9941325695267
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 生成配图3
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 工具
+        aliasName: 工具
+      inputs:
+      - id: 936c1db5-cb90-474d-9ce7-bc39498852f3
+        name: width
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: literal
+            content: '1024'
+            contentErrMsg: ''
+        required: true
+      - id: e18e2fa4-3761-4d2d-9189-a39c2a6a33f7
+        name: height
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: literal
+            content: '1024'
+            contentErrMsg: ''
+        required: true
+      - id: 2dc6e08b-a2b8-4989-9de8-65b8e83f9a64
+        name: prompt
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: dd3d55bb-15ab-43d4-853b-6c10e725972f
+              nodeId: spark-llm::990a472a-1705-425d-9a3b-b44d0e144713
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+        required: true
+      outputs:
+      - id: 78868e56-dc08-4e22-b8a1-d17c9494b083
+        name: code
+        schema:
+          type: integer
+      - id: 799c54d2-4db1-4cb6-8924-79a290f41e10
+        name: sid
+        schema:
+          type: string
+      - id: 2e2cea12-5c95-465b-bb75-9d975db1a674
+        name: message
+        schema:
+          type: string
+      - id: 0381466c-b4a9-4fec-b5c3-9a0782d05cba
+        name: data
+        schema:
+          type: object
+          properties:
+          - id: 46cd5c46-8065-43a0-a062-e19097b0c3a7
+            name: image_url
+            type: string
+          - id: 715957cf-ea8f-444d-830f-67f5df1d3572
+            name: image_url_md
+            type: string
+      nodeParam:
+        appId: 680ab54f
+        code: ''
+        pluginId: tool@8b226f7d7421000
+        operationId: 文生图-hrOgFpJ8
+        toolDescription: 根据输入的内容生成与内容有关的图片
+        version: V1.0
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        businessInput: [
+          ]
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/tool-icon.png
+      updatable: false
+      isLatest: true
+  - id: spark-llm::1e2ea48c-3e87-4acf-9c1c-982734323633
+    dragging: false
+    selected: false
+    width: 361
+    height: 147
+    position:
+      x: -643.3988933879923
+      y: -339.90602889403976
+    positionAbsolute:
+      x: -643.3988933879923
+      y: -339.90602889403976
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 描述小说画面
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 基础节点
+        aliasName: 大模型
+      inputs:
+      - id: e30cb825-01a6-481c-95d5-0eab2071559c
+        name: input
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      outputs:
+      - id: dd3d55bb-15ab-43d4-853b-6c10e725972f
+        name: output
+        nameErrMsg: ''
+        schema:
+          type: string
+          default: ''
+      nodeParam:
+        maxTokens: 2048
+        topK: 4
+        auditing: default
+        template: |
+          请根据我给你发送的小说内容，想象一个符合小说当前场景的画面，并根据画面内容帮我生成一个AI绘图提示词，要求有沉浸感，写实风格，写实风格，写实风格，高清质感，有电影画面的感觉，请直接返回提示词，不要回复无关内容
+        respFormat: 0
+        appId: 680ab54f
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        enableChatHistoryV2:
+          isEnabled: false
+          rounds: 1
+        templateErrMsg: ''
+        llmId: 593066024
+        domain: deepseek-chat
+        serviceId: deepseek-chat
+        url: https://api.deepseek.com/chat/completions
+        modelId: 1
+        isThink: false
+        multiMode: false
+        modelName: DeepSeeK
+        modelEnabled: true
+        llmIdErrMsg: ''
+        source: openai
+        extraParams:
+          temperature: 1
+        systemTemplate: 请根据我给你发送的小说内容，想象一个符合小说当前场景的画面，并根据画面内容帮我生成一个AI绘图提示词，要求有沉浸感，写实风格，写实风格，写实风格，高清质感，有电影画面的感觉，请直接返回提示词，不要回复无关内容
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/largeModelIcon.png
+      description: 根据输入的提示词，调用选定的大模型，对提示词作出回答
+      updatable: false
+  - id: spark-llm::8c04c8e6-4e2a-4e3c-ac71-4b8b05ae1ada
+    dragging: false
+    selected: false
+    width: 361
+    height: 147
+    position:
+      x: -524.9878893545542
+      y: -103.74276315373447
+    positionAbsolute:
+      x: -524.9878893545542
+      y: -103.74276315373447
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 描述小说画面
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 基础节点
+        aliasName: 大模型
+      inputs:
+      - id: e30cb825-01a6-481c-95d5-0eab2071559c
+        name: input
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      outputs:
+      - id: dd3d55bb-15ab-43d4-853b-6c10e725972f
+        name: output
+        nameErrMsg: ''
+        schema:
+          type: string
+          default: ''
+      nodeParam:
+        maxTokens: 2048
+        topK: 4
+        auditing: default
+        template: |
+          请根据我给你发送的小说内容，想象一个符合小说当前场景的画面，并根据画面内容帮我生成一个AI绘图提示词，要求有沉浸感，写实风格，写实风格，写实风格，高清质感，有电影画面的感觉，请直接返回提示词，不要回复无关内容
+        respFormat: 0
+        appId: 680ab54f
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        enableChatHistoryV2:
+          isEnabled: false
+          rounds: 1
+        templateErrMsg: ''
+        llmId: 593066024
+        domain: deepseek-chat
+        serviceId: deepseek-chat
+        url: https://api.deepseek.com/chat/completions
+        modelId: 1
+        isThink: false
+        multiMode: false
+        modelName: DeepSeeK
+        modelEnabled: true
+        llmIdErrMsg: ''
+        source: openai
+        extraParams:
+          temperature: 1
+        systemTemplate: |
+          请根据我给你发送的小说内容，想象一个符合小说当前场景的画面，并根据画面内容帮我生成一个AI绘图提示词，要求有沉浸感，写实风格，写实风格，写实风格，高清质感，有电影画面的感觉，请直接返回提示词，不要回复无关内容
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/largeModelIcon.png
+      description: 根据输入的提示词，调用选定的大模型，对提示词作出回答
+      updatable: false
+  - id: spark-llm::990a472a-1705-425d-9a3b-b44d0e144713
+    dragging: false
+    selected: false
+    width: 361
+    height: 147
+    position:
+      x: -380.5618030903498
+      y: 117.38031953021374
+    positionAbsolute:
+      x: -380.5618030903498
+      y: 117.38031953021374
+    type: custom
+    data:
+      allowInputReference: true
+      allowOutputReference: true
+      label: 描述小说画面
+      labelEdit: false
+      references: [
+        ]
+      status: ''
+      nodeMeta:
+        nodeType: 基础节点
+        aliasName: 大模型
+      inputs:
+      - id: e30cb825-01a6-481c-95d5-0eab2071559c
+        name: input
+        nameErrMsg: ''
+        schema:
+          type: string
+          value:
+            type: ref
+            content:
+              id: 0d6aff7e-a65d-4483-8aa0-8641f4fb5dbf
+              nodeId: spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d
+              name: output
+            contentErrMsg: ''
+        fileType: ''
+      outputs:
+      - id: dd3d55bb-15ab-43d4-853b-6c10e725972f
+        name: output
+        nameErrMsg: ''
+        schema:
+          type: string
+          default: ''
+      nodeParam:
+        maxTokens: 2048
+        topK: 4
+        auditing: default
+        template: |
+          请根据我给你发送的小说内容，想象一个符合小说当前场景的画面，并根据画面内容帮我生成一个AI绘图提示词，要求有沉浸感，写实风格，写实风格，写实风格，高清质感，有电影画面的感觉，请直接返回提示词，不要回复无关内容
+        respFormat: 0
+        appId: 680ab54f
+        uid: f2f3495d-a549-4bed-bca2-8db2de33107a
+        enableChatHistoryV2:
+          isEnabled: false
+          rounds: 1
+        templateErrMsg: ''
+        llmId: 593066024
+        domain: deepseek-chat
+        serviceId: deepseek-chat
+        url: https://api.deepseek.com/chat/completions
+        modelId: 1
+        isThink: false
+        multiMode: false
+        modelName: DeepSeeK
+        modelEnabled: true
+        llmIdErrMsg: ''
+        source: openai
+        extraParams:
+          temperature: 1
+        systemTemplate: |
+          请根据我给你发送的小说内容，想象一个符合小说当前场景的画面，并根据画面内容帮我生成一个AI绘图提示词，要求有沉浸感，写实风格，写实风格，写实风格，高清质感，有电影画面的感觉，请直接返回提示词，不要回复无关内容
+      icon: https://oss-beijing-m8.openstorage.cn/pro-bucket/sparkBot/common/workflow/icon/largeModelIcon.png
+      description: 根据输入的提示词，调用选定的大模型，对提示词作出回答
+      updatable: false
+  edges:
+  - source: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+    target: node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    type: customEdge
+    id: reactflow__edge-spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1-node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d
+    target: node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    type: customEdge
+    id: reactflow__edge-spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d-node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: plugin::24b2f4e3-0d8a-4e47-b033-12b7c16a3097
+    target: node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    type: customEdge
+    id: reactflow__edge-plugin::24b2f4e3-0d8a-4e47-b033-12b7c16a3097-node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: plugin::9ba02f34-9b90-4d51-9d69-274651ca16b4
+    target: node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    type: customEdge
+    id: reactflow__edge-plugin::9ba02f34-9b90-4d51-9d69-274651ca16b4-node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+    sourceHandle: normal_one_of::60633470-e95c-4ec3-b87a-3580bbc29013
+    target: node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    type: customEdge
+    id: reactflow__edge-spark-llm::fa077196-0612-4aba-850f-e745387dfe0bnormal_one_of::60633470-e95c-4ec3-b87a-3580bbc29013-node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: plugin::1d1cc090-cf69-48f1-a2ae-a49f891de795
+    target: node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    type: customEdge
+    id: reactflow__edge-plugin::1d1cc090-cf69-48f1-a2ae-a49f891de795-node-end::cda617af-551e-462e-b3b8-3bb9a041bf88
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+    target: spark-llm::1e2ea48c-3e87-4acf-9c1c-982734323633
+    type: customEdge
+    id: reactflow__edge-spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1-spark-llm::1e2ea48c-3e87-4acf-9c1c-982734323633
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::1e2ea48c-3e87-4acf-9c1c-982734323633
+    target: plugin::1d1cc090-cf69-48f1-a2ae-a49f891de795
+    type: customEdge
+    id: reactflow__edge-spark-llm::1e2ea48c-3e87-4acf-9c1c-982734323633-plugin::1d1cc090-cf69-48f1-a2ae-a49f891de795
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+    sourceHandle: normal_one_of::60633470-e95c-4ec3-b87a-3580bbc29013
+    target: spark-llm::8c04c8e6-4e2a-4e3c-ac71-4b8b05ae1ada
+    type: customEdge
+    id: reactflow__edge-spark-llm::fa077196-0612-4aba-850f-e745387dfe0bnormal_one_of::60633470-e95c-4ec3-b87a-3580bbc29013-spark-llm::8c04c8e6-4e2a-4e3c-ac71-4b8b05ae1ada
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::8c04c8e6-4e2a-4e3c-ac71-4b8b05ae1ada
+    target: plugin::24b2f4e3-0d8a-4e47-b033-12b7c16a3097
+    type: customEdge
+    id: reactflow__edge-spark-llm::8c04c8e6-4e2a-4e3c-ac71-4b8b05ae1ada-plugin::24b2f4e3-0d8a-4e47-b033-12b7c16a3097
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d
+    target: spark-llm::990a472a-1705-425d-9a3b-b44d0e144713
+    type: customEdge
+    id: reactflow__edge-spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d-spark-llm::990a472a-1705-425d-9a3b-b44d0e144713
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::990a472a-1705-425d-9a3b-b44d0e144713
+    target: plugin::9ba02f34-9b90-4d51-9d69-274651ca16b4
+    type: customEdge
+    id: reactflow__edge-spark-llm::990a472a-1705-425d-9a3b-b44d0e144713-plugin::9ba02f34-9b90-4d51-9d69-274651ca16b4
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+    target: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+    type: customEdge
+    id: reactflow__edge-spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1-spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: spark-llm::fa077196-0612-4aba-850f-e745387dfe0b
+    sourceHandle: normal_one_of::60633470-e95c-4ec3-b87a-3580bbc29013
+    target: spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d
+    type: customEdge
+    id: reactflow__edge-spark-llm::fa077196-0612-4aba-850f-e745387dfe0bnormal_one_of::60633470-e95c-4ec3-b87a-3580bbc29013-spark-llm::ff2d7676-bc2e-4c62-a268-c98c13f4678d
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
+  - source: node-start::d61b0f71-87ee-475e-93ba-f1607f0ce783
+    target: spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+    type: customEdge
+    id: reactflow__edge-node-start::d61b0f71-87ee-475e-93ba-f1607f0ce783-spark-llm::0f302583-6232-4e71-9c4e-10bdcaaf23d1
+    markerEnd:
+      type: arrow
+      color: '#6356EA'
+    data:
+      edgeType: curve
