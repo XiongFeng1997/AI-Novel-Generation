@@ -1,126 +1,60 @@
-[![Astron_Readme](./docs/imgs/Astron_Readme.png)](https://agent.xfyun.cn)
+# AI-Novel-Gemeration丨AI图文小说生成器
 
-<div align="center">
+AI-Novel-Gemeration是基于讯飞Astron Agent平台开发的AI小说图文生成智能体，只需输入一个小说名称即可生成图文并茂的小说文章。
 
-[![License](https://img.shields.io/badge/license-apache2.0-blue.svg)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/iflytek/astron-agent?style=social)](https://github.com/iflytek/astron-agent/stargazers)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/iflytek/astron-agent)
+<img width="1075" height="655" alt="Snipaste_2025-11-23_19-09-50" src="https://github.com/user-attachments/assets/f52509f1-70f0-4482-a6e4-f068192c78ed" />
 
-English | [简体中文](README-zh.md)
-
-</div>
-
-## 🔭 What is Astron Agent
-Astron Agent is an **enterprise-grade, commercial-friendly** Agentic Workflow development platform that integrates AI workflow orchestration, model management, AI and MCP tool integration, RPA automation, and team collaboration features.
-The platform supports **high-availability** deployment, enabling organizations to rapidly build **scalable, production-ready** intelligent agent applications and establish their AI foundation for the future.
-
-### Why Choose Astron Agent?
-- **Stable and Reliable**: Built on the same core technology as the iFLYTEK Astron Agent Platform, providing enterprise-grade reliability with a fully available high-availability version open source.
-- **Cross-System Integration**: Natively integrates intelligent RPA, efficiently connecting internal and external enterprise systems, enabling seamless interaction between Agents and enterprise systems.
-- **Enterprise-Grade Open Ecosystem**: Deeply compatible with various industry models and tools, supporting custom extensions and flexibly adapting to diverse enterprise scenarios.
-- **Business-Friendly**: Released under the Apache 2.0 License, with no commercial restrictions, allowing free commercial use.
-
-### Key Features
-- **Enterprise-Grade High Availability:** Full-stack capabilities for development, building, optimization, and management. Supports one-click deployment with strong reliability.  
-- **Intelligent RPA Integration:** Enables cross-system process automation, empowering Agents with controllable execution to achieve a complete loop “from decision to action.”  
-- **Ready-to-Use Tool Ecosystem:** Integrates massive AI capabilities and tools from the [iFLYTEK Open Platform](https://www.xfyun.cn), validated by millions of developers, supporting plug-and-play integration without extra development.  
-- **Flexible Large Model Support:** Offers diverse access methods, from rapid API-based model access and validation to one-click deployment of enterprise-level MaaS (Model as a Service) on-premises clusters, meeting needs of all scales.  
-
-## 📰 News
-
-- **[Astron Hackathon @ 2025 iFLYTEK Global 1024 Developer Festival](https://luma.com/9zmbc6xb)**
-
-## 🚀 Quick Start
-
-We offer two deployment methods to meet different scenarios:
-
-### Option 1: Docker Compose (Recommended for Quick Start)
-
-```bash
-# Clone the repository
-git clone https://github.com/iflytek/astron-agent.git
-
-# Navigate to astronAgent directory
-cd docker/astronAgent
-
-# Copy environment configuration
-cp .env.example .env
-
-# Configure environment variables
-vim .env
-```
-
-For environment variable configuration, please refer to the documentation:[DEPLOYMENT_GUIDE_WITH_AUTH.md](https://github.com/iflytek/astron-agent/blob/main/docs/DEPLOYMENT_GUIDE_WITH_AUTH.md#step-2-configure-astronagent-environment-variables)
-
-```bash
-# Start all services (including Casdoor)
-docker compose -f docker-compose-with-auth.yaml up -d
-```
-
-#### 📊 Service Access Addresses
-
-After startup, you can access the services at the following addresses:
-
-**Authentication Service**
-- **Casdoor Admin Interface**: http://localhost:8000
-
-**AstronAgent**
-- **Application Frontend (nginx proxy)**: http://localhost/
-
-**Note**
-- Default Casdoor login credentials: username: `admin`, password: `123`
-
-### Option 2: Helm (For Kubernetes Environments)
-
-> 🚧 **Note**: Helm charts are currently under development. Stay tuned for updates!
-
-```bash
-# Coming soon
-# helm repo add astron-agent https://iflytek.github.io/astron-agent
-# helm install astron-agent astron-agent/astron-agent
-```
+<img width="1080" height="691" alt="640" src="https://github.com/user-attachments/assets/60484383-c6e2-45e6-a907-4eb24344e69e" />
 
 ---
 
-> 📖 For complete deployment instructions and configuration details, see [Deployment Guide](docs/DEPLOYMENT_GUIDE_WITH_AUTH.md)
+##  亮点
 
-## 📖 Using Astron Cloud
+- **简洁易用**：快速上手，无需复杂配置。
+- **DeepSeek加成**：接入了DeepSeek大模型，助力你快速生成高质量小说。
+- **图片生成**：基于讯飞星火图片生成能力，可以快速生成精美配图。
+- **开箱即用**：基于 Docker Compose 一键部署！
+- **成熟可靠**：基于企业级开源项目 AstronAgent 二次开发
 
-**Try Astron**：Astron Cloud provides a ready-to-use environment for creating and managing Agents.Free quick access [https://agent.xfyun.cn](https://agent.xfyun.cn).
+##  配置要求
 
-**Using Guide**：For detailed usage instructions, please refer to [Quick Start Guide](https://www.xfyun.cn/doc/spark/Agent03-%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html).
+- **Docker 20.10+**
+- **Docker Compose 2.0+**
+- **50G磁盘空间**
+- **最低4G内存，推荐8G**
 
-## 📚 Documentation
+---
 
-- [🚀 Deployment Guide](docs/DEPLOYMENT_GUIDE.md)
-- [🔧 Configuration](docs/CONFIGURATION.md)
-- [🚀 Quick Start](https://www.xfyun.cn/doc/spark/Agent02-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html)
-- [📘 Development Guide](https://www.xfyun.cn/doc/spark/Agent03-%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html#_1-%E6%8C%87%E4%BB%A4%E5%9E%8B%E6%99%BA%E8%83%BD%E4%BD%93%E5%BC%80%E5%8F%91)
-- [💡 Best Practices](https://www.xfyun.cn/doc/spark/AgentNew-%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B.html)
-- [📱 Use Cases](https://www.xfyun.cn/doc/spark/Agent05-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B.html)
-- [❓ FAQ](https://www.xfyun.cn/doc/spark/Agent06-FAQ.html)
+## 📦 安装
 
-## 🤝 Contributing
+```bash
+# 进入项目根目录
+cd astron-agent
 
-We welcome contributions of all kinds! Please see our [Contributing Guide](CONTRIBUTING.md)
+# 进入 astronAgent 目录
+cd docker/astronAgent
 
-## 🌟 Star History
+# 复制环境变量配置
+cp .env.example .env
 
-<div align="center">
-  <img src="https://api.star-history.com/svg?repos=iflytek/astron-agent&type=Date" alt="Star History Chart" width="600">
-</div>
+# 编辑环境变量
+vim .env
 
-## 📞 Support
+# 一键启动部署
+docker compose -f docker-compose-with-auth.yaml up -d
 
-- 💬 Community Discussion: [GitHub Discussions](https://github.com/iflytek/astron-agent/discussions)
-- 🐛 Bug Reports: [Issues](https://github.com/iflytek/astron-agent/issues)
-- 👥 WeChat Work Group:
 
-<div align="center">
-  <img src="./docs/imgs/WeCom_Group.png" alt="WeChat Work Group" width="300">
-</div>
+##  本地访问
 
-## 📄 Open Source License
+- **使用地址：http://localhos**
+- **默认用户名：admin**
+- **默认密码：123**
 
-This project is licensed under the [Apache 2.0 License](LICENSE), allowing free use, modification, distribution, and commercial use without any restrictions.
+
+##  导入 AI-Novel-Gemeration 工作流
+
+- **工作流文件地址：**docker/astronAgent/小说图文生成.yml
+- **新建工作流时导入该文件即可**
+
+
 
